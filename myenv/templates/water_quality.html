@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Admin - Water Quality</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4 mb-4">Admin - Water Quality</h1>
+
+        <!-- Create -->
+        <form method="POST" action="/admin/water_quality" class="mb-4">
+            <div class="form-group">
+                <label for="loc">Location:</label>
+                <input type="text" class="form-control" id="loc" name="location">
+            </div>
+            <div class="form-group">
+                <label for="pH">pH:</label>
+                <input type="text" class="form-control" id="pH" name="pH">
+            </div>
+            <div class="form-group">
+                <label for="Chlorine">Chlorine:</label>
+                <input type="text" class="form-control" id="Chlorine" name="Chlorine">
+            </div>
+            <div class="form-group">
+                <label for="hard">Hardness:</label>
+                <input type="text" class="form-control" id="hard" name="hardness">
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+
+    <!-- Read -->
+    <h2 class="mt-4">Water Quality Table</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th colspan="5">Table Entries</th>
+                <th colspan="2">Action</th>
+            </tr>
+            <tr>
+                <th>ID</th>
+                <th>Location</th>
+                <th>pH</th>
+                <th>Chlorine</th>
+                <th>Hardness</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody
+        {% for row in data %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4] }}</td>
+            <!-- Update -->
+            <td>
+                <form method="POST" action="/admin/water_quality/{{ row[0] }}" class="form-inline">
+                    <input type="hidden" name="_method" value="update">
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="location" value="{{ row[1] }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="pH" value="{{ row[2] }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="Chlorine" value="{{ row[3] }}">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control mb-2 mr-sm-2" name="hardness" value="{{ row[4] }}">
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-2">Update</button>
+                </form>
+            </td>
+            <!-- Delete -->
+            <td>
+                <form method="POST" action="/admin/water_quality/{{ row[0] }}">
+                    <input type="hidden" name="_method" value="delete">
+                    <input type="submit" value="Delete">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</body>
+</html>

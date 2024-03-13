@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Water Data</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        #chart-container {
+            width: 1500px;
+            /* Adjust as needed */
+            height: 1000px;
+            /* Adjust as needed */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script>
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                const ctx = document.getElementById('chart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: data.map(row => row.ID),
+                        datasets: [{
+                            label: 'pH',
+                            data: data.map(row => row.pH),
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1,
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0
+                        },
+                        {
+                            label: 'Chlorine',
+                            data: data.map(row => row.Chlorine),
+                            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
+                            borderWidth: 1,
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0
+                        },
+                        {
+                            label: 'Hardness',
+                            data: data.map(row => row.Hardness),
+                            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                            borderColor: 'rgba(255, 206, 86, 1)',
+                            borderWidth: 1,
+                            barPercentage: 1.0,
+                            categoryPercentage: 1.0
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            });
+    </script>
+<div class="d-flex-column align-items-center justify-content-center">
+<div>
+    <img src="{{url_for('.static', filename='image001.png')}}" alt="1">
+</div>
+<div>
+    <img src="{{url_for('.static', filename='image002.png')}}" alt="2">
+</div>
+<div>
+    <img src="{{url_for('.static', filename='image003.png')}}" alt="3">
+</div>
+</div>
+</body>
+
+</html>

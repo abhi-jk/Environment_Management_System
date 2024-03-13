@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}">
+</head>
+<body>
+
+    <header>
+        <img class="logo" src="{{url_for('.static', filename='logo_watair.png')}}">
+        <nav>
+            <a href="#" class="active">Home</a>
+            <a href="/register">Register</a>
+            <a href="/login">Login</a>
+            <a href="/adminlogin">Admin</a>
+        </nav>
+    </header>
+
+    <section class="home">
+        <img src="{{url_for('.static', filename='mount2.png')}}" class="mount2">
+        <img src="{{url_for('.static', filename='mount1.png')}}" class="mount1">
+        <img src="{{url_for('.static', filename='bush2.png')}}" class="bush2">
+        
+        <h1 class="title">Wat-Air</h1>
+
+        <img src="{{url_for('.static', filename='bush1.png')}}" class="bush1">
+        <img src="{{url_for('.static', filename='leaf2.png')}}" class="leaf2">
+        <img src="{{url_for('.static', filename='leaf1.png')}}" class="leaf1">
+    </section>
+
+    <section class="about">
+        <h1>Wat-Air</h1>
+        <br>
+        <p>An environmental management system (EMS) is a framework that helps organizations manage their environmental responsibilities in a systematic and comprehensive manner. It provides a structured approach to identifying environmental impacts, setting goals and targets, implementing programs to achieve those goals, and monitoring progress towards meeting those targets.</p>
+        <br>
+        <p>EMSs can help organizations reduce their environmental impact, comply with environmental regulations, and improve their environmental performance. Some common components of an EMS include: policy development, planning, implementation, evaluation, and auditing. EMSs can be tailored to the specific needs of an organization, and can be applied to a wide range of industries and sectors.</p>
+        <br>
+        <p>The benefits of implementing an EMS include cost reduction, risk management, improved reputation, and stakeholder engagement. EMSs can be certified to international standards such as ISO 14001, providing assurance to customers and other stakeholders that an organization is managing its environmental impacts effectively. However, EMSs require ongoing commitment and involvement from senior management and staff to be effective, and should be regularly reviewed and updated to ensure they remain relevant and effective in achieving environmental goals and targets. Overall, an EMS is a valuable tool for organizations looking to improve their environmental performance and sustainability.</p>
+    </section>
+
+    <script src="{{url_for('.static', filename='script.js')}}"></script>
+
+</body>
+</html>
